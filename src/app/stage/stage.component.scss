@@ -1,0 +1,16 @@
+#stage {
+    padding: 0;
+    border: 1px solid black;
+    height: 480px;
+    width: 720px;
+    overflow: auto;
+}
+
+#stage > * {
+    all: unset;
+}
+
+#stage table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
