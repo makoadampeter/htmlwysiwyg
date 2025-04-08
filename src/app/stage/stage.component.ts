@@ -16,7 +16,7 @@ export class StageComponent implements AfterViewInit {
     this.stage.nativeElement.innerHTML = this.content;
   }
 
-  input() {
+  onEdit() {
     this.contentChange.emit(this.stage.nativeElement.innerHTML);
   }
 }
