@@ -19,4 +19,27 @@ export class StageComponent implements AfterViewInit {
   onEdit() {
     this.contentChange.emit(this.stage.nativeElement.innerHTML);
   }
+
+  checkFormat() {
+    console.log("Checking format...");
+
+    console.log("Beginning of selection is bold: " + this.isSelectionBold());
+  }
+
+  isSelectionBold(): boolean {
+    const selection = window.getSelection();
+    if (!selection) return false;
+    
+    return this.getFormat((selection.anchorNode!).parentElement!);
+  }
+  
+  private getParentElement(node: Node): HTMLElement {
+    return node.nodeType === Node.ELEMENT_NODE 
+      ? node as HTMLElement 
+      : node.parentElement!;
+  }
+  
+  private getFormat(element: HTMLElement): boolean {
+    return parseInt(window.getComputedStyle(element).fontWeight) >= 700;
+  }
 }

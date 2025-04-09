@@ -1,2 +1,6 @@
-<div #stage id="stage" contenteditable (input)="onEdit()">
+<div
+  #stage id="stage"
+  contenteditable
+  (input)="onEdit()"
+  (mouseup)="checkFormat()">
 </div>
