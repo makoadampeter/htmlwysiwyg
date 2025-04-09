@@ -20,26 +20,32 @@ export class StageComponent implements AfterViewInit {
     this.contentChange.emit(this.stage.nativeElement.innerHTML);
   }
 
-  checkFormat() {
+  logFormat() {
     console.log("Checking format...");
 
-    console.log("Beginning of selection is bold: " + this.isSelectionBold());
+    console.log(this.getSelectionFormat());
   }
 
-  isSelectionBold(): boolean {
+  getSelectionFormat(): Format | null {
     const selection = window.getSelection();
-    if (!selection) return false;
+    if (!selection) return null;
     
     return this.getFormat((selection.anchorNode!).parentElement!);
   }
   
-  private getParentElement(node: Node): HTMLElement {
-    return node.nodeType === Node.ELEMENT_NODE 
-      ? node as HTMLElement 
-      : node.parentElement!;
+  private getFormat(element: HTMLElement): Format {
+    let res: Format = {
+      bold : parseInt(window.getComputedStyle(element).fontWeight) >= 700,
+      italic: window.getComputedStyle(element).fontStyle.includes('italic'),
+      underline: window.getComputedStyle(element).textDecoration.includes('underline')
+    };
+
+    return res;
   }
-  
-  private getFormat(element: HTMLElement): boolean {
-    return parseInt(window.getComputedStyle(element).fontWeight) >= 700;
-  }
+}
+
+type Format = {
+  bold: boolean;
+  italic: boolean;
+  underline: boolean;
 }
