@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Format } from "../types/Format";
 
 @Component({
   selector: 'app-stage',
@@ -10,6 +11,8 @@ export class StageComponent implements AfterViewInit {
   @Input() content = '';
   @Output() contentChange = new EventEmitter();
 
+  @Output() selectionFormatChange = new EventEmitter<Format>();
+
   @ViewChild('stage') stage!: ElementRef;
 
   ngAfterViewInit() {
@@ -20,17 +23,18 @@ export class StageComponent implements AfterViewInit {
     this.contentChange.emit(this.stage.nativeElement.innerHTML);
   }
 
-  logFormat() {
+  handleSelect() {
     console.log("Checking format...");
 
-    console.log(this.getSelectionFormat());
+    const format: Format = this.getSelectionFormat();
+    console.log(format);
+    this.selectionFormatChange.emit(format);
   }
 
-  getSelectionFormat(): Format | null {
+  getSelectionFormat(): Format {
     const selection = window.getSelection();
-    if (!selection) return null;
     
-    return this.getFormat((selection.anchorNode!).parentElement!);
+    return this.getFormat((selection!.anchorNode!).parentElement!);
   }
   
   private getFormat(element: HTMLElement): Format {
@@ -42,10 +46,4 @@ export class StageComponent implements AfterViewInit {
 
     return res;
   }
-}
-
-type Format = {
-  bold: boolean;
-  italic: boolean;
-  underline: boolean;
 }

@@ -1,2 +1,2 @@
-<app-toolbar (formatTextEvent)="formatText($event)"/>
-<app-stage [(content)]="htmlContent"/>
+<app-toolbar [selectionFormat]="selectionFormat" (formatTextEvent)="formatText($event)"/>
+<app-stage (selectionFormatChange)="setSelectionFormat($event)" [(content)]="htmlContent"/>
