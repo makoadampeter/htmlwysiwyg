@@ -31,7 +31,7 @@ export class StageComponent implements AfterViewInit {
     this.selectionFormatChange.emit(format);
   }
 
-  getSelectionFormat(): Format {
+  private getSelectionFormat(): Format {
     const selection = window.getSelection();
     
     return this.getFormat((selection!.anchorNode!).parentElement!);

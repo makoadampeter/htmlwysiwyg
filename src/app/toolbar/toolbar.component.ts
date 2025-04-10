@@ -12,6 +12,7 @@ export class ToolbarComponent {
   @ViewChild('buttonBold') buttonBold!: MatButtonToggle;
   @ViewChild('buttonItalic') buttonItalic!: MatButtonToggle;
   @ViewChild('buttonUnderline') buttonUnderline!: MatButtonToggle;
+  
   @Input({ required: true }) selectionFormat!: Format;
 
   @Output() formatTextEvent = new EventEmitter<string>();
