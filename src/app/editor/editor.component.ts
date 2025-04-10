@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { StageComponent } from '../stage/stage.component';
 import { Format } from '../types/Format';
@@ -11,6 +11,13 @@ import { DownloadFormComponent } from "../download-form/download-form.component"
   styleUrl: './editor.component.scss'
 })
 export class EditorComponent {
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnloadHandler(event: BeforeUnloadEvent): string | void {
+    event.preventDefault();
+    event.returnValue = 'You have unsaved changes! Are you sure you want to leave?';
+    return event.returnValue;
+  }
+
   static readonly HTMLPREFIX: string = `
   <!doctype html>
   <html lang="en">
