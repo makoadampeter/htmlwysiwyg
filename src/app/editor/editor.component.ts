@@ -13,9 +13,11 @@ import { DownloadFormComponent } from "../download-form/download-form.component"
 export class EditorComponent {
   @HostListener('window:beforeunload', ['$event'])
   beforeUnloadHandler(event: BeforeUnloadEvent): string | void {
-    event.preventDefault();
-    event.returnValue = 'You have unsaved changes! Are you sure you want to leave?';
-    return event.returnValue;
+    if (this.isHtmlContentDirty) {
+      event.preventDefault();
+      event.returnValue = 'You have unsaved changes! Are you sure you want to leave?';
+      return event.returnValue;
+    }
   }
 
   static readonly HTMLPREFIX: string = `
@@ -51,10 +53,16 @@ export class EditorComponent {
     Start editing!
   `;
 
+  isHtmlContentDirty: boolean = false;
+
   selectionFormat: Format = {
     bold: false,
     italic: false,
     underline: false
+  }
+
+  onHtmlContentChange() {
+    this.isHtmlContentDirty = true;
   }
 
   formatText(command: string, value: string = '') {
