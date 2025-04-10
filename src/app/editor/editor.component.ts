@@ -50,17 +50,10 @@ export class EditorComponent {
   }
 
   formatText(command: string, value: string = '') {
-    document.execCommand(command, false, value);
+    document.execCommand(command);
   }
 
   setSelectionFormat(format: Format) {
-    this.selectionFormat = {
-      bold: !format.bold,
-      italic: !format.italic,
-      underline: !format.underline
-    };
-    console.log("negated: " + this.selectionFormat);
-      this.selectionFormat = {...format};
-      console.log("final: " + this.selectionFormat);
+    this.selectionFormat = {...format};
   }
 }
