@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { StageComponent } from '../stage/stage.component';
 import { Format } from '../types/Format';
+import { DownloadFormComponent } from "../download-form/download-form.component";
 
 @Component({
   selector: 'app-editor',
-  imports: [ToolbarComponent, StageComponent],
+  imports: [ToolbarComponent, StageComponent, DownloadFormComponent],
   templateUrl: './editor.component.html',
   styleUrl: './editor.component.scss'
 })
 export class EditorComponent {
-  static readonly htmlprefix: string = `
+  static readonly HTMLPREFIX: string = `
   <!doctype html>
   <html lang="en">
     <head>
@@ -33,7 +34,7 @@ export class EditorComponent {
     </head>
     <body>`;
 
-  static readonly htmlpostfix: string = `
+  static readonly HTMLPOSTFIX: string = `
     </body>
     </html>
   `;
@@ -55,5 +56,25 @@ export class EditorComponent {
 
   setSelectionFormat(format: Format) {
     this.selectionFormat = {...format};
+  }
+
+  downloadHtml(filename: string) {
+    const html = EditorComponent.HTMLPREFIX + this.htmlContent + EditorComponent.HTMLPOSTFIX;
+    this.download(filename + '.html', html);
+  }
+
+  download(filename: string, text: string) {
+    console.log("Downloading " + filename);
+
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
   }
 }

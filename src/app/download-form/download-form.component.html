@@ -1,1 +1,9 @@
-<p>download-form works!</p>
+<form (submit)="downloadHtml()">
+    <mat-form-field>
+        <mat-label>File name: </mat-label>
+        <input matInput type="text" [formControl]="fileName">
+    </mat-form-field>
+    <button mat-flat-button>
+        Download HTML
+    </button>
+</form>

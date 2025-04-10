@@ -1,2 +1,3 @@
 <app-toolbar [selectionFormat]="selectionFormat" (formatTextEvent)="formatText($event)"/>
 <app-stage (selectionFormatChange)="setSelectionFormat($event)" [(content)]="htmlContent"/>
+<app-download-form (downloadHtmlEvent)="downloadHtml($event)" />

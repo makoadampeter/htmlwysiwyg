@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { MatButtonToggle, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { Format } from '../types/Format';
 
