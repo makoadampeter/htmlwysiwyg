@@ -1,9 +1,9 @@
-<form (submit)="downloadHtml()">
+<form>
     <mat-form-field>
         <mat-label>File name: </mat-label>
         <input matInput type="text" [formControl]="fileName">
     </mat-form-field>
-    <button mat-flat-button>
+    <button mat-flat-button (click)="downloadHtml($event)">
         Download HTML
     </button>
 </form>

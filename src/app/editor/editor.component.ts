@@ -65,7 +65,7 @@ export class EditorComponent {
     this.isHtmlContentDirty = true;
   }
 
-  formatText(command: string, value: string = '') {
+  formatText(command: string) {
     document.execCommand(command);
   }
 

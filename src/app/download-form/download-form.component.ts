@@ -15,7 +15,8 @@ export class DownloadFormComponent {
 
   @Output() downloadHtmlEvent = new EventEmitter<string>();
 
-  downloadHtml() {
+  downloadHtml($event: Event) {
+    $event.preventDefault();
     if (this.fileName.value) {
       this.downloadHtmlEvent.emit(this.fileName.value);
     } else {
