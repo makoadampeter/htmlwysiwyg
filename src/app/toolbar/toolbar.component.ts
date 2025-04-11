@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 import { MatButtonToggle, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { Format } from '../types/Format';
 
@@ -8,7 +8,7 @@ import { Format } from '../types/Format';
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
   @ViewChild('buttonBold') buttonBold!: MatButtonToggle;
   @ViewChild('buttonItalic') buttonItalic!: MatButtonToggle;
   @ViewChild('buttonUnderline') buttonUnderline!: MatButtonToggle;
@@ -17,10 +17,18 @@ export class ToolbarComponent {
 
   @Output() formatTextEvent = new EventEmitter<string>();
 
+  initialized: boolean = false;
+
+  ngOnInit() {
+    this.initialized = true;
+  }
+
   ngOnChanges() {
-    this.buttonBold.checked = this.selectionFormat.bold;
-    this.buttonItalic.checked = this.selectionFormat.italic;
-    this.buttonUnderline.checked = this.selectionFormat.underline;
+    if (this.initialized) {
+      this.buttonBold.checked = this.selectionFormat.bold;
+      this.buttonItalic.checked = this.selectionFormat.italic;
+      this.buttonUnderline.checked = this.selectionFormat.underline;
+    }
   }
 
   formatText(command: string) {
