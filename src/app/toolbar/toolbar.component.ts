@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 import { MatButtonToggle, MatButtonToggleModule } from '@angular/material/button-toggle';
-import { Format } from '../types/Format';
+import { Format } from '../interfaces/Format';
 
 @Component({
   selector: 'app-toolbar',

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { Format } from "../types/Format";
+import { Format } from "../interfaces/Format";
 
 @Component({
   selector: 'app-stage',

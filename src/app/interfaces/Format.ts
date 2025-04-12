@@ -1,4 +1,4 @@
-export type Format = {
+export interface Format {
     bold: boolean;
     italic: boolean;
     underline: boolean;

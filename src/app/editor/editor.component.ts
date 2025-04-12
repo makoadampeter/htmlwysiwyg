@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { StageComponent } from '../stage/stage.component';
-import { Format } from '../types/Format';
+import { Format } from '../interfaces/Format';
 import { DownloadFormComponent } from "../download-form/download-form.component";
 
 @Component({
