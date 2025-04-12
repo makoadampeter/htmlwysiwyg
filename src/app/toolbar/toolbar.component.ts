@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 import { MatButtonToggle, MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatToolbar } from '@angular/material/toolbar';
 import { Format } from '../interfaces/Format';
 
 @Component({
   selector: 'app-toolbar',
-  imports: [MatButtonToggleModule],
+  imports: [MatButtonToggleModule, MatToolbar],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
