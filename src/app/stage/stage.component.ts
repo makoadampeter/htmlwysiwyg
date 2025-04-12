@@ -28,11 +28,10 @@ export class StageComponent implements AfterViewInit {
   handleSelect() {
     console.log("Checking format...");
 
-    let selectionRange = window.getSelection()?.getRangeAt(0);
     const format: Format = this.getSelectionFormat();
-    console.log("Format at \"" + selectionRange + "\":", format);
+    console.log("Format ", format);
     this.selectionFormatChange.emit(format);
-    this.selectionRangeChange.emit(selectionRange);
+    this.selectionRangeChange.emit();
   }
 
   private getSelectionFormat(): Format {
