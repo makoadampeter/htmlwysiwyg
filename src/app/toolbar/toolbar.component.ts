@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule, MatSelect } from '@angular/material/select';
 import { Format } from '../interfaces/Format';
+import { Command } from '../interfaces/Command';
 
 @Component({
   selector: 'app-toolbar',
@@ -19,7 +20,7 @@ export class ToolbarComponent implements OnInit {
   
   @Input({ required: true }) selectionFormat!: Format;
 
-  @Output() formatTextEvent = new EventEmitter<string>();
+  @Output() formatTextEvent = new EventEmitter<Command>();
 
   @Output() selectClickEvent = new EventEmitter();
 
@@ -38,9 +39,14 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
-  formatText(command: string) {
+  formatText(commandName: string, parameter?: string) {
     console.log(this.selectionFormat);
+    let command: Command = {
+      name: commandName,
+      parameter: parameter
+    };
     this.formatTextEvent.emit(command);
+    console.log("formatText(", command.name, ", ", command.parameter, ")")
   }
 
   handleSelectClick() {

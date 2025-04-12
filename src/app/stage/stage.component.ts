@@ -68,7 +68,7 @@ export class StageComponent implements AfterViewInit {
     }
 
     let res: Format = {
-      bold : parseInt(window.getComputedStyle(element).fontWeight) >= 700,
+      bold: parseInt(window.getComputedStyle(element).fontWeight) >= 700,
       italic: window.getComputedStyle(element).fontStyle.includes('italic'),
       underline: window.getComputedStyle(element).textDecoration.includes('underline'),
       heading: heading

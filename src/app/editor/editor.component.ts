@@ -3,6 +3,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { StageComponent } from '../stage/stage.component';
 import { Format } from '../interfaces/Format';
 import { DownloadFormComponent } from "../download-form/download-form.component";
+import { Command } from '../interfaces/Command';
 
 @Component({
   selector: 'app-editor',
@@ -50,7 +51,7 @@ export class EditorComponent {
 
   htmlContent: string = `
     <h1>Placeholder HTML</h1>
-    Start editing!
+    <p>Start editing!</p>
   `;
 
   isHtmlContentDirty: boolean = false;
@@ -68,8 +69,12 @@ export class EditorComponent {
     this.isHtmlContentDirty = true;
   }
 
-  formatText(command: string) {
-    document.execCommand(command);
+  formatText(command: Command) {
+    if (command.parameter) {
+      document.execCommand(command.name, false, command.parameter);
+    } else {
+      document.execCommand(command.name, false);
+    }
     this.saveSelection();
   }
 
