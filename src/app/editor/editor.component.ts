@@ -55,6 +55,8 @@ export class EditorComponent {
 
   isHtmlContentDirty: boolean = false;
 
+  selectionRange: Range | undefined = undefined;
+
   selectionFormat: Format = {
     bold: false,
     italic: false,
@@ -68,6 +70,7 @@ export class EditorComponent {
 
   formatText(command: string) {
     document.execCommand(command);
+    this.saveSelection();
   }
 
   setSelectionFormat(format: Format) {
@@ -92,5 +95,19 @@ export class EditorComponent {
     element.click();
   
     document.body.removeChild(element);
+  }
+
+  saveSelection() {
+    let range = window.getSelection()?.getRangeAt(0);
+    this.selectionRange = range;
+    console.log("Saved " + this.selectionRange);
+  }
+
+  restoreSelection() {
+    if (this.selectionRange) {
+      window.getSelection()?.removeAllRanges();
+      window.getSelection()?.addRange(this.selectionRange);
+      console.log("Restored " + this.selectionRange);
+    }
   }
 }

@@ -7,7 +7,7 @@
         </mat-button-toggle-group>
         <mat-form-field>
             <mat-label>Heading</mat-label>
-            <mat-select #selectHeading>
+            <mat-select #selectHeading (click)="handleSelectClick()">
                 <mat-option value="0">None</mat-option>
                 @for (item of [].constructor(6); track $index) {
                     <mat-option value="{{ $index + 1 }}">Heading {{ $index + 1 }}</mat-option>

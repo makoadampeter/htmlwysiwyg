@@ -13,6 +13,8 @@ export class StageComponent implements AfterViewInit {
 
   @Output() selectionFormatChange = new EventEmitter<Format>();
 
+  @Output() selectionRangeChange = new EventEmitter();
+
   @ViewChild('stage') stage!: ElementRef;
 
   ngAfterViewInit() {
@@ -26,9 +28,11 @@ export class StageComponent implements AfterViewInit {
   handleSelect() {
     console.log("Checking format...");
 
+    let selectionRange = window.getSelection()?.getRangeAt(0);
     const format: Format = this.getSelectionFormat();
-    console.log(format);
+    console.log("Format at \"" + selectionRange + "\":", format);
     this.selectionFormatChange.emit(format);
+    this.selectionRangeChange.emit(selectionRange);
   }
 
   private getSelectionFormat(): Format {

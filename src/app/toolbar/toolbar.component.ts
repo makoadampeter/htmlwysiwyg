@@ -21,6 +21,8 @@ export class ToolbarComponent implements OnInit {
 
   @Output() formatTextEvent = new EventEmitter<string>();
 
+  @Output() selectClickEvent = new EventEmitter();
+
   initialized: boolean = false;
 
   ngOnInit() {
@@ -39,5 +41,9 @@ export class ToolbarComponent implements OnInit {
   formatText(command: string) {
     console.log(this.selectionFormat);
     this.formatTextEvent.emit(command);
+  }
+
+  handleSelectClick() {
+    this.selectClickEvent.emit();
   }
 }

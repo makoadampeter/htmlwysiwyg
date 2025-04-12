@@ -1,3 +1,5 @@
-<app-toolbar [selectionFormat]="selectionFormat" (formatTextEvent)="formatText($event)"/>
-<app-stage (selectionFormatChange)="setSelectionFormat($event)" [(content)]="htmlContent" (contentChange)="onHtmlContentChange()"/>
-<app-download-form (downloadHtmlEvent)="downloadHtml($event)" />
+<div>
+    <app-toolbar (selectClickEvent)="restoreSelection()" [selectionFormat]="selectionFormat" (formatTextEvent)="formatText($event)"/>
+    <app-stage (selectionRangeChange)="saveSelection()" (selectionFormatChange)="setSelectionFormat($event)" [(content)]="htmlContent" (contentChange)="onHtmlContentChange()"/>
+    <app-download-form (downloadHtmlEvent)="downloadHtml($event)" />
+</div>
