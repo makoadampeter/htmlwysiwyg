@@ -62,7 +62,7 @@ export class EditorComponent {
     bold: false,
     italic: false,
     underline: false,
-    heading: 0
+    tag: "P"
   }
 
   onHtmlContentChange() {
@@ -80,6 +80,7 @@ export class EditorComponent {
 
   setSelectionFormat(format: Format) {
     this.selectionFormat = {...format};
+    console.log(this.selectionFormat);
   }
 
   downloadHtml(filename: string) {

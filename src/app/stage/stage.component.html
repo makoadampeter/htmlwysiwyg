@@ -1,6 +1,7 @@
 <div
   #stage id="stage"
   contenteditable
-  (input)="onEdit()"
-  (mouseup)="handleSelect()">
+  (input)="handleInput()"
+  (mouseup)="handleSelect()"
+  (keydown)="handleKeyDown($event)">
 </div>

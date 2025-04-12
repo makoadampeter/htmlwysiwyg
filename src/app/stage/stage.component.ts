@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Format } from "../interfaces/Format";
+import { Command } from '../interfaces/Command';
 
 @Component({
   selector: 'app-stage',
@@ -15,21 +16,44 @@ export class StageComponent implements AfterViewInit {
 
   @Output() selectionRangeChange = new EventEmitter();
 
+  @Output() formatTextEvent = new EventEmitter();
+
   @ViewChild('stage') stage!: ElementRef;
 
   ngAfterViewInit() {
     this.stage.nativeElement.innerHTML = this.content;
   }
 
-  onEdit() {
+  handleInput() {
     this.contentChange.emit(this.stage.nativeElement.innerHTML);
   }
 
-  handleSelect() {
-    console.log("Checking format...");
-
+  handleKeyDown($event: KeyboardEvent) {
     const format: Format = this.getSelectionFormat();
-    console.log("Format ", format);
+
+    if ($event.key === "Enter") {
+      setTimeout(() => {
+        let command: Command = {
+          name: 'formatBlock',
+          parameter: format.tag
+        }
+        this.formatText(command.name, command.parameter);
+      });
+    }
+    this.selectionFormatChange.emit(format);
+    this.selectionRangeChange.emit();
+  }
+
+  formatText(commandName: string, parameter?: string) {
+      let command: Command = {
+        name: commandName,
+        parameter: parameter
+      };
+      this.formatTextEvent.emit(command);
+    }
+
+  handleSelect() {
+    const format: Format = this.getSelectionFormat();
     this.selectionFormatChange.emit(format);
     this.selectionRangeChange.emit();
   }
@@ -41,37 +65,18 @@ export class StageComponent implements AfterViewInit {
   }
   
   private getFormat(element: HTMLElement): Format {
-    let heading: number;
-
-    switch (element.closest('H1, H2, H3, H4, H5, H6')?.tagName) {
-      case "H1":
-        heading = 1;
-        break;
-      case "H2":
-        heading = 2;
-        break;
-      case "H3":
-        heading = 3;
-        break;
-      case "H4":
-        heading = 4;
-        break;
-      case "H5":
-        heading = 5;
-        break;
-      case "H6":
-        heading = 6;
-        break;
-      default:
-        heading = 0;
-        break;
+    let tag: string = "P";
+    
+    let heading: string | undefined = element.closest('H1, H2, H3, H4, H5, H6')?.tagName;
+    if (heading) {
+      tag = heading;
     }
 
     let res: Format = {
       bold: parseInt(window.getComputedStyle(element).fontWeight) >= 700,
       italic: window.getComputedStyle(element).fontStyle.includes('italic'),
       underline: window.getComputedStyle(element).textDecoration.includes('underline'),
-      heading: heading
+      tag: tag
     };
 
     return res;

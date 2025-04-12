@@ -35,7 +35,7 @@ export class ToolbarComponent implements OnInit {
       this.buttonBold.checked = this.selectionFormat.bold;
       this.buttonItalic.checked = this.selectionFormat.italic;
       this.buttonUnderline.checked = this.selectionFormat.underline;
-      this.selectHeading.value = this.selectionFormat.heading.toString();
+      this.selectHeading.value = this.selectionFormat.tag;
     }
   }
 
