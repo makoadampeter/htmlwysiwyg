@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
-import { MatButtonToggle, MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonToggleModule, MatButtonToggle } from '@angular/material/button-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectModule, MatSelect } from '@angular/material/select';
 import { Format } from '../interfaces/Format';
 
 @Component({
@@ -15,14 +15,13 @@ export class ToolbarComponent implements OnInit {
   @ViewChild('buttonBold') buttonBold!: MatButtonToggle;
   @ViewChild('buttonItalic') buttonItalic!: MatButtonToggle;
   @ViewChild('buttonUnderline') buttonUnderline!: MatButtonToggle;
+  @ViewChild('selectHeading') selectHeading!: MatSelect;
   
   @Input({ required: true }) selectionFormat!: Format;
 
   @Output() formatTextEvent = new EventEmitter<string>();
 
   initialized: boolean = false;
-
-  selectedHeading = '';
 
   ngOnInit() {
     this.initialized = true;
@@ -33,6 +32,8 @@ export class ToolbarComponent implements OnInit {
       this.buttonBold.checked = this.selectionFormat.bold;
       this.buttonItalic.checked = this.selectionFormat.italic;
       this.buttonUnderline.checked = this.selectionFormat.underline;
+      this.selectHeading.value = this.selectionFormat.heading.toString();
+      console.log(this.selectHeading.value)
     }
   }
 

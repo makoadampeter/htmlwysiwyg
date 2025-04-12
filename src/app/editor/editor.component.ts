@@ -58,7 +58,8 @@ export class EditorComponent {
   selectionFormat: Format = {
     bold: false,
     italic: false,
-    underline: false
+    underline: false,
+    heading: 0
   }
 
   onHtmlContentChange() {

@@ -1,16 +1,18 @@
 <mat-toolbar>
-    <mat-button-toggle-group hideMultipleSelectionIndicator name="basicDeco" multiple>
-        <mat-button-toggle #buttonBold [checked]="selectionFormat.bold" (change)="formatText('bold')">B</mat-button-toggle>
-        <mat-button-toggle #buttonItalic [checked]="selectionFormat.italic" (change)="formatText('italic')">I</mat-button-toggle>
-        <mat-button-toggle #buttonUnderline [checked]="selectionFormat.underline" (change)="formatText('underline')">U</mat-button-toggle>
-    </mat-button-toggle-group>
-    <mat-form-field>
-        <mat-label>Heading</mat-label>
-        <mat-select [(value)]="selectedHeading">
-            <mat-option>None</mat-option>
-            @for (item of [].constructor(6); track $index) {
-                <mat-option value="{{ $index + 1 }}">Heading {{ $index + 1 }}</mat-option>
-            }
-        </mat-select>
-    </mat-form-field>
+    <form>
+        <mat-button-toggle-group hideMultipleSelectionIndicator name="basicDeco" multiple>
+            <mat-button-toggle #buttonBold [checked]="selectionFormat.bold" (change)="formatText('bold')">B</mat-button-toggle>
+            <mat-button-toggle #buttonItalic [checked]="selectionFormat.italic" (change)="formatText('italic')">I</mat-button-toggle>
+            <mat-button-toggle #buttonUnderline [checked]="selectionFormat.underline" (change)="formatText('underline')">U</mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-form-field>
+            <mat-label>Heading</mat-label>
+            <mat-select #selectHeading [(value)]="selectionFormat.heading">
+                <mat-option value="0">None</mat-option>
+                @for (item of [].constructor(6); track $index) {
+                    <mat-option value="{{ $index + 1 }}">Heading {{ $index + 1 }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+    </form>
 </mat-toolbar>
