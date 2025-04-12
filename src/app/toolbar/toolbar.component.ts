@@ -1,11 +1,13 @@
 import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 import { MatButtonToggle, MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatToolbar } from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { Format } from '../interfaces/Format';
 
 @Component({
   selector: 'app-toolbar',
-  imports: [MatButtonToggleModule, MatToolbar],
+  imports: [MatFormFieldModule, MatSelectModule, MatButtonToggleModule, MatToolbarModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
@@ -19,6 +21,8 @@ export class ToolbarComponent implements OnInit {
   @Output() formatTextEvent = new EventEmitter<string>();
 
   initialized: boolean = false;
+
+  selectedHeading = '';
 
   ngOnInit() {
     this.initialized = true;
