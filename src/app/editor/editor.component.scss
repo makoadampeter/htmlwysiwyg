@@ -1,3 +1,17 @@
-mat-card-content {
-    width: fit-content;
+#editorWrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#toolbar {
+    flex: 0 0 auto;
+}
+
+#stage {
+    flex: 1 1 auto;
+}
+
+#downloadForm {
+    flex: 0 0 auto;
 }
