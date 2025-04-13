@@ -38,7 +38,9 @@ export class EditorComponent {
         }
 
         body {
-          overflow: auto;
+          display: block;
+          margin: 8px;
+          font-family: Arial, Helvetica, sans-serif;
         }
       </style>
     </head>
