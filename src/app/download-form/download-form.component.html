@@ -1,9 +1,12 @@
-<form>
-    <mat-form-field>
-        <mat-label>File name: </mat-label>
-        <input matInput type="text" [formControl]="fileName">
-    </mat-form-field>
-    <button mat-flat-button (click)="downloadHtml($event)">
-        Download HTML
-    </button>
-</form>
+<mat-toolbar>
+    <form class="toolbarForm">
+        <mat-form-field subscriptSizing="dynamic">
+            <mat-label>File name: </mat-label>
+            <input matInput type="text" [formControl]="fileName">
+            <span matTextSuffix>.html</span>
+        </mat-form-field>
+        <button mat-flat-button (click)="downloadHtml($event)">
+            Download HTML
+        </button>
+    </form>
+</mat-toolbar>

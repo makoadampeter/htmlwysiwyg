@@ -2,3 +2,10 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.toolbarForm {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
