@@ -58,6 +58,8 @@ export class EditorComponent {
 
   isHtmlContentDirty: boolean = false;
 
+  errorMessage: string = '';
+
   selectionRange: Range | undefined = undefined;
 
   selectionFormat: Format = {
@@ -116,6 +118,14 @@ export class EditorComponent {
       window.getSelection()?.removeAllRanges();
       window.getSelection()?.addRange(this.selectionRange);
       console.log("Restored " + this.selectionRange);
+    }
+  }
+
+  handleDownloadError(isError: boolean) {
+    if (isError) {
+      this.errorMessage = 'Please enter a file name!';
+    } else {
+      this.errorMessage = '';
     }
   }
 }

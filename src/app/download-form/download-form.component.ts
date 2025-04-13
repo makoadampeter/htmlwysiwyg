@@ -16,12 +16,15 @@ export class DownloadFormComponent {
 
   @Output() downloadHtmlEvent = new EventEmitter<string>();
 
+  @Output() errorEvent = new EventEmitter();
+
   downloadHtml($event: Event) {
     $event.preventDefault();
     if (this.fileName.value) {
+      this.errorEvent.emit(false);
       this.downloadHtmlEvent.emit(this.fileName.value);
     } else {
-      this.downloadHtmlEvent.emit('unnamed');
+      this.errorEvent.emit(true);
     }
   }
 }
